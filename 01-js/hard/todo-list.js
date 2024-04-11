@@ -10,8 +10,50 @@
   Once you've implemented the logic, test your code by running
 */
 
+const { error } = require("console");
+
 class Todo {
 
+  constructor(){
+    this.todos = [];
+  }
+  
+  add(todo){
+    console.log(todo)
+    this.todos.push(todo);
+  }
+  remove(indexOfTodo){
+    if(indexOfTodo>=0 && indexOfTodo<this.todos.length)
+    this.todos.splice(indexOfTodo,1)
+  
+  }
+  update(index, updatedTodo){
+    if(index>=0 && index<this.todos.length)
+    this.todos[index] = updatedTodo
+  }
+  
+  getAll(){
+    return this.todos
+  }
+  
+  get(indexOfTodo){
+    if(indexOfTodo>=0 && indexOfTodo<this.todos.length)
+      return this.todos[indexOfTodo]
+    else return  null
+    
+  }
+  clear(){
+    this.todos.length=0
+  }
 }
+
+let todoList = new Todo()
+todoList.add('Task 1');
+todoList.add('Task 2');
+todoList.add('Task 3');
+
+todoList.update(1, 'Updated Task 2');
+todoList.update(3, 'Invalid Task');
+console.log(todoList.getAll())
 
 module.exports = Todo;

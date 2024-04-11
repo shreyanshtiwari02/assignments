@@ -12,7 +12,7 @@ let errorCount = 0;
 
 app.get('/user', function(req, res) {
   throw new Error("User not found");
-  res.status(200).json({ name: 'john' });
+  res.status(200).json({ name: 'johnbbn' });
 });
 
 app.post('/user', function(req, res) {
@@ -23,4 +23,8 @@ app.get('/errorCount', function(req, res) {
   res.status(200).json({ errorCount });
 });
 
+app.use((err, req, res, next) => {
+  res.status(404).send("Route not found");
+  errorCount++;
+})
 module.exports = app;
